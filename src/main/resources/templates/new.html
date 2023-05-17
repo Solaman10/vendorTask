@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Create New Vendor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <style>
+        .form-label {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>Create New Vendor</h1>
+    <br />
+    <div class="col-sm-4">
+        <form action="#" th:action="@{/save}" th:object="${vendor}" method="post">
+
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Vendor Name(*)</label>
+                    <td>
+                        <input type="hidden" th:field="*{id}" />
+                        <input type="text" th:field="*{name}" class="form-control" />
+                    </td>
+                </tr>
+            </div>
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >BankAccountNo(*)</label>
+                    <td>
+                        <input type="text" th:field="*{bankAccountNumber}" class="form-control" />
+                        <p th:if="${#fields.hasErrors('bankAccountNumber')}" th:errors="*{bankAccountNumber}" class="text-danger"></p>
+                    </td>
+
+                </tr>
+            </div>
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >BankName(*)</label>
+                    <td><input type="text" th:field="*{bankName}" class="form-control" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >AddressLine1</label>
+                    <td><input type="text" th:field="*{addressLine1}" class="form-control" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >AddressLine2</label>
+                    <td><input type="text" th:field="*{addressLine2}" class="form-control"/></td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >City</label>
+                    <td><input type="text" th:field="*{city}" class="form-control" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Country</label>
+                    <td><input type="text" th:field="*{country}" class="form-control" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >ZipCode</label>
+                    <td><input type="text" th:field="*{zipCode}" class="form-control" placeholder="------"/></td>
+                </tr>
+            </div>
+            <br>
+            <h6 style="color:red;text-align:left">* Mandatory Fields</h6>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info" onclick="validateForm()">Save</button> </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<script>
+    function validateForm() {
+        var name = document.getElementById("name").value;
+        var bankAccountNumber = document.getElementById("bankAccountNumber").value;
+        var bankName = document.getElementById("bankName").value;
+
+        if (name == "") {
+            alert("Please enter a name.");
+            return false;
+        }
+
+        if (bankAccountNumber == "") {
+            alert("Please enter a bank account number.");
+            return false;
+        }
+
+        if (bankName == "") {
+            alert("Please enter a bank name.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</body>
+</html>
